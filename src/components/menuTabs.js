@@ -7,6 +7,7 @@ import food_menu_data from '../data/menu';
 import drink_menu_data from '../data/drinks';
 import MenuItem from './menuItem';
 import Modal from './modal';
+import { GiMeal } from 'react-icons/gi';
 
 const MenuTabs = () => {
     const classes = "bg-red-700 bg-opacity-75 rounded-xl shadow-md min-w-full min-h-full  my-4 px-2  md:w-3/5 overflow-hidden sm:my-px sm:px-px md:my-4 md:px-4";
@@ -39,6 +40,7 @@ const MenuTabs = () => {
     
     const addToCart = (food) => {
         alert(food.name)
+        return;
     }
 
     const handleFoodQueryChange = (e) => {
@@ -82,7 +84,13 @@ const MenuTabs = () => {
                                     }
                                     >
                                         <span className="flex items-center">
-                                            <img src={food.image} alt={food.name + " illustration"} className="flex-shrink-0 h-6 w-6 rounded-full" />
+                                            { 
+                                            food.image ? 
+                                            <img src={food.image} alt={food.name + " illustration"} className="flex-shrink-0 h-6 w-6 rounded-full" /> :
+                                            <div className="w-6 h-6 flex justify-center place-items-center  rounded-full  bg-yellow-400 text-red-900">
+                                                <GiMeal className="text-6xl" />
+                                            </div>
+                                            }
                                             <span className="ml-3 block truncate">{food.name}</span>
                                         </span>
                                         <span className="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -94,12 +102,12 @@ const MenuTabs = () => {
                         </Combobox>
                     </div>
                     {
-                        filteredFood.map((item, index) => <MenuItem key={index} item={item}  handleAddToCart={ () => addToCart(item)} />)
+                        filteredFood.map((item, index) => <MenuItem key={"food-item-" + index} item={item}  handleAddToCart={ () => addToCart(item)} />)
                     }
                 </Tab.Panel>
                 <Tab.Panel className={classes}>
                     {
-                        drink_menu_data.map((item, index) => <MenuItem key={index} item={item} />)
+                        drink_menu_data.map((data, index) => <MenuItem key={"drink-item-" + index} item={data} />)
                     }
                 </Tab.Panel>
             </Tab.Panels>

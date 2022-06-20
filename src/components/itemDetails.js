@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect, useMemo, useCallback } from "react";
 import { Dialog, Transition } from '@headlessui/react'
 import { MdClose } from "react-icons/md";
 
@@ -12,18 +12,21 @@ const ItemDetails = (props) => {
 
     const closeModal = () => {
         setIsOpen(false)
-        props.closeModal()
     }
 
     const openModal = () => {
         setIsOpen(true)
-        props.openModal()
     }
+
+    
+    
+
+    
 
 
     return (
 
-        <Transition appear show={isOpen} as={Fragment} className="ease-in-out duration-300">
+        <Transition appear show={props.isOpen} as={Fragment} className="ease-in-out duration-300">
             <Dialog as="div" className="relative z-10" onClose={closeModal}>
                 <Transition.Child
                     as={Fragment}
@@ -56,7 +59,7 @@ const ItemDetails = (props) => {
                                     Item Details
 
                                     <span className="float-right text-red-600">
-                                        <MdClose className="text-2xl cursor-pointer" onClick={() => closeModal()}/>
+                                        <MdClose className="text-2xl cursor-pointer" onClick={() => props.closeModal()}/>
                                         
                                     </span>
                                 </Dialog.Title>
@@ -160,7 +163,7 @@ const ItemDetails = (props) => {
                                     <button
                                         type="button"
                                         className="inline-flex justify-center rounded-md border border-transparent bg-yellow-300 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
-                                        onClick={() => props.handleModalClose()}
+                                        onClick={() => props.closeModal()}
                                     >
                                         {"close"}
                                     </button>

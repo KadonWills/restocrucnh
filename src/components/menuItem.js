@@ -1,35 +1,34 @@
-import { useState, useMemo, useEffect } from "react";
-import { GiMeal } from "react-icons/gi";
+import { useState } from "react";
 
+import { GiMeal } from "react-icons/gi";
 import { HiPlus } from "react-icons/hi";
+
 import ItemDetails from "./itemDetails";
-import Modal from "./modal";
 
 
 const MenuItem = (props) => {
     const [item] = useState(props.item);
-    let { name, price, discount, portion, description, image } = item;
     const [isOpen, setIsOpen] = useState(false);
 
+    let { name, price, discount, portion, description, image } = item;
+
     const openModal =()=> {
-        alert("opening")
-        
+        //alert("opening")
         setIsOpen(true);
     }
-    
-    
+
     
 
     const closeModal = () => {
-        alert("closing")
+        //alert("closing")
         setIsOpen(false)
     }
 
     return (
         <>
-            <div onClick={openModal} type="button" className="flex cursor-pointer duration-200  place-items-center  rounded-lg  text-white bg-red-900 my-3 relative scale-90 hover:scale-95">
+            <div  className="flex  duration-200  place-items-center  rounded-lg  text-white bg-red-900 my-3 relative scale-90 hover:scale-95">
 
-                <div className="flex justify-center items-center w-1/5 p-3">
+                <div className="flex justify-center items-center w-1/5 p-3 cursor-pointer" onClick={() => openModal()} type="button">
                     {
                         image ?
                             <img src={image} alt={name} className="w-12 h-12 lg:w-24 lg:h-24 mr-auto rounded-full " /> :
@@ -40,7 +39,7 @@ const MenuItem = (props) => {
 
                     }
                 </div>
-                <div className="flex flex-col justify-start w-2/5 p-3">
+                <div className="flex flex-col justify-start w-3/5 p-3 cursor-pointer" onClick={() => openModal()} type="button">
                     <div className="flex flex-row  justify-start">
                         <h3 className="font-bold text-xl">{name} </h3>
                     </div>
@@ -54,7 +53,7 @@ const MenuItem = (props) => {
 
                     </div>
                 </div>
-                <div className="w-2/5 block  h-full bg-teal-500   ">
+                <div className="w-1/5 block  h-full   ">
                     <button
                         onClick={() => props.handleAddToCart(item)}
                         className="absolute top-0 right-0 bg-yellow-400 hover:bg-yellow-300 text-red-900 font-bold w-12 h-12 py-2 px-4 rounded-tl-none rounded-br-none rounded-lg">
@@ -64,7 +63,7 @@ const MenuItem = (props) => {
 
             </div>
 
-            <ItemDetails isOpen={isOpen} item={item} handleModalClose={()=> closeModal} />
+            <ItemDetails isOpen={isOpen} item={item} closeModal={ closeModal} />
         </>
     )
 }
