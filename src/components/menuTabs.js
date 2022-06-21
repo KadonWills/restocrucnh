@@ -8,11 +8,13 @@ import drink_menu_data from '../data/drinks';
 import MenuItem from './menuItem';
 import Modal from './modal';
 import { GiMeal } from 'react-icons/gi';
+import { MdClose, MdRefresh } from 'react-icons/md';
 
 const MenuTabs = () => {
     const classes = "bg-red-700 bg-opacity-75 rounded-xl shadow-md min-w-full min-h-full  my-4 px-2  md:w-3/5 overflow-hidden sm:my-px sm:px-px md:my-4 md:px-4";
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [foodMenu] = useState(food_menu_data);
+    const [drinkMenu] = useState(drink_menu_data);
     const [foodQuery, setFoodQuery] = useState('');
 
     const [selectedFood, setSelectedFood] = useState('' ?? foodMenu[0]);
@@ -40,11 +42,16 @@ const MenuTabs = () => {
     
     const addToCart = (food) => {
         alert(food.name)
-        return;
+        
     }
 
     const handleFoodQueryChange = (e) => {
         setFoodQuery(e.target.value)
+        //filterFood()
+    }
+
+    const resetSearch = () => {
+        setFoodQuery('')
         filterFood()
     }
     
@@ -56,19 +63,20 @@ const MenuTabs = () => {
             setSelectedIndex(index);
         }}>
             <Tab.List>
-                <Tab className={({ selected }) => selected ? "py-2 px-3 bg-yellow-400 shadow-md text-red-900 md:mx-2 rounded-md font-bold focus:border-yellow-200" : " text-white p-3"}>Food Menu</Tab>
-                <Tab className={({ selected }) => selected ? "py-2 px-3 bg-yellow-400 shadow-md text-red-900 md:mx-2 rounded-md font-bold focus:border-yellow-200" : " text-white p-3"}>Drink Menu</Tab>
+                <Tab className={({ selected }) => selected ? "py-2 px-3 bg-yellow-400 shadow-md text-red-900 md:mx-2 rounded-md font-bold focus:border-yellow-200" : " text-white p-3 border-1"}>Food Menu</Tab>
+                <Tab className={({ selected }) => selected ? "py-2 px-3 bg-yellow-400 shadow-md text-red-900 md:mx-2 rounded-md font-bold focus:border-yellow-200" : " text-white p-3 border-1"}>Drink Menu</Tab>
             </Tab.List>
             <Tab.Panels>
                 <Tab.Panel className={classes}>
-                    <div className="mx-auto my-4">
-                        <Combobox value={selectedFood} onChange={setSelectedFood}>
+                    <div className="mx-auto my-4 relative">
+                        <Combobox value={selectedFood} onChange={setSelectedFood} >
                             <Combobox.Input
                                 placeholder="Search for a particular food"
                                 className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm"
-                                onChange={(event) => handleFoodQueryChange(event.target.value)}
-                                onSelect={() => filterFood}
+                                onChange={(e) => handleFoodQueryChange(e)}
+                                onSelect={() => filterFood() }
                                 displayValue={(food) => food.name}
+                                
                             />
                             <Combobox.Options className="absolute z-10 mt-1 max-w-max bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
                                 {filteredFood.map((food) => (
@@ -99,15 +107,16 @@ const MenuTabs = () => {
                                     </Combobox.Option>
                                 ))}
                             </Combobox.Options>
+                            <MdRefresh onClick={resetSearch} className='float-right absolute top-1/2 -translate-y-1/2 right-2 text-2xl text-gray-300 hover:text-gray-400 cursor-pointer'/>
                         </Combobox>
                     </div>
                     {
-                        filteredFood.map((item, index) => <MenuItem key={"food-item-" + index} item={item}  handleAddToCart={ () => addToCart(item)} />)
+                       filteredFood.map((item) => <MenuItem key={"food-item-" + item.id} item={item}  handleAddToCart={ () => addToCart(item)} />)
                     }
                 </Tab.Panel>
                 <Tab.Panel className={classes}>
                     {
-                        drink_menu_data.map((data, index) => <MenuItem key={"drink-item-" + index} item={data} />)
+                        drinkMenu.map((data, index) => <MenuItem key={"drink-item-" + index} item={data}   handleAddToCart={ () => addToCart(data)} />)
                     }
                 </Tab.Panel>
             </Tab.Panels>

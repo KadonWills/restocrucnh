@@ -10,7 +10,7 @@ const MenuItem = (props) => {
     const [item] = useState(props.item);
     const [isOpen, setIsOpen] = useState(false);
 
-    let { name, price, discount, portion, description, image } = item;
+    let { name, price, discount, portion, image } = item;
 
     const openModal =()=> {
         //alert("opening")
@@ -26,7 +26,7 @@ const MenuItem = (props) => {
 
     return (
         <>
-            <div  className="flex  duration-200  place-items-center  rounded-lg  text-white bg-red-900 my-3 relative scale-90 hover:scale-95">
+            <div  className="flex  duration-200  place-items-center  rounded-lg  text-white bg-red-900 my-3 relative scale-95 hover:scale-100 hover:border-2 border-yellow-400">
 
                 <div className="flex justify-center items-center w-1/5 p-3 cursor-pointer" onClick={() => openModal()} type="button">
                     {
@@ -56,14 +56,14 @@ const MenuItem = (props) => {
                 <div className="w-1/5 block  h-full   ">
                     <button
                         onClick={() => props.handleAddToCart(item)}
-                        className="absolute top-0 right-0 bg-yellow-400 hover:bg-yellow-300 text-red-900 font-bold w-12 h-12 py-2 px-4 rounded-tl-none rounded-br-none rounded-lg">
+                        className="absolute top-0 right-0 bg-yellow-400 hover:bg-yellow-300 text-red-900 font-bold w-12 h-12 py-2 px-4 rounded-tl-none rounded-br-none rounded-md">
                         <HiPlus className="font-bold" />
                     </button>
                 </div>
 
             </div>
 
-            <ItemDetails isOpen={isOpen} item={item} closeModal={ closeModal} />
+            <ItemDetails isOpen={isOpen} item={item} handleAddToCart={props?.handleAddToCart} closeModal={ closeModal} />
         </>
     )
 }
