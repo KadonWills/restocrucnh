@@ -9,7 +9,7 @@ import food_menu_data from '../data/menu';
 import drink_menu_data from '../data/drinks';
 import MenuItem from './menuItem';
 
-const MenuTabs = () => {
+const MenuTabs = (props) => {
     const classes = "bg-red-700 bg-opacity-75 rounded-xl shadow-md min-w-full min-h-full  my-4 px-2  md:w-3/5 overflow-hidden sm:my-px sm:px-px md:my-4 md:px-4";
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [foodMenu] = useState(food_menu_data);
@@ -19,12 +19,6 @@ const MenuTabs = () => {
     const [selectedFood, setSelectedFood] = useState('' ?? foodMenu[0]);
     const [filteredFood, setFilteredFood] = useState(foodMenu);
 
-    // letfilteredFood =
-    //     foodQuery === ''
-    //         ? foodMenu
-    //         : foodMenu.filter((food) => {
-    //             return food.name.toLowerCase().includes(foodQuery.toLowerCase())
-    //         })
 
     const filterFood = () => {
         setFilteredFood(foodQuery === ''
@@ -39,10 +33,7 @@ const MenuTabs = () => {
     }
 
     
-    const addToCart = (food) => {
-        alert(food.name)
-        
-    }
+    
 
     const handleFoodQueryChange = (e) => {
         setFoodQuery(e.target.value)
@@ -110,12 +101,12 @@ const MenuTabs = () => {
                         </Combobox>
                     </div>
                     {
-                       filteredFood.map((item) => <MenuItem key={"food-item-" + item.id} item={item}  handleAddToCart={ () => addToCart(item)} />)
+                       filteredFood.map((item) => <MenuItem key={"food-item-" + item.id} item={item}  handleAddToCart={ () => props.addToCart(item)} />)
                     }
                 </Tab.Panel>
                 <Tab.Panel className={classes}>
                     {
-                        drinkMenu.map((data, index) => <MenuItem key={"drink-item-" + data.id} item={data}   handleAddToCart={ () => addToCart(data)} />)
+                        drinkMenu.map((data, index) => <MenuItem key={"drink-item-" + data.id} item={data}   handleAddToCart={ () => props.addToCart(data)} />)
                     }
                 </Tab.Panel>
             </Tab.Panels>

@@ -12,7 +12,7 @@ const LoginView = (props) => {
         
         <section  className="flex flex-wrap flex-col justify-center place-items-center text-center  space-x-5 p-7    max-w-screen h-[78vh] text-white  ">
             <div className="w-full text-center">
-                <GiHotMeal className="text-8xl mx-auto" />
+                <GiHotMeal className="text-8xl mx-auto animate-wobble " />
             </div>
             <div className="text-lg text-white my-6">
                 Welcome to <mark className="rounded-full p-1">RestoCrunch</mark> connect as :

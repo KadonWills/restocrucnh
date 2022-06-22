@@ -46,7 +46,7 @@ const MenuItem = (props) => {
                     <div className="flex flex-col  justify-start">
                         <p >  Portion : {portion}</p>
                         <p>Price :  <span className="">
-                            {discount > 0 ? <strike className="text-sm mx-2 text-red-300 stroke-red-600  stroke-2 ">{price}</strike> : null}
+                            {discount > 0 ? <strike className="text-sm mx-2 text-red-300 line-through ">{price}</strike> : null}
                             <b className="text-yellow-300">{discount > 0 ? (price - discount) : price} {item.currency}</b>
                         </span>
                         </p>
