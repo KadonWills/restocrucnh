@@ -1,11 +1,21 @@
+import { useState } from "react";
+
 import Footer from "./components/footer";
-import MenuTabs from "./components/menuTabs";
 import  Nav  from "./components/nav";
+
 import './index.css';
 import './App.css';
-import Modal from "./components/modal";
+import ClientView from "./components/client";
+import ChiefView from "./components/chief";
+import LoginView from "./components/login";
+import WaiterView from "./components/waiter";
 
 function App() {
+
+    const [isClient, setIsClient] = useState(false);
+    const [isChief, setIsChief] = useState(false);
+    const [isWaiter, setIsWaiter] = useState(false);
+    const [isAuth, setIsAuth] = useState(false)
 
   let default_table = {
     name: 'Table 1',
@@ -16,29 +26,60 @@ function App() {
     id: 1
 }
 
+  function goTo (view)  {
+
+      switch (view) {
+
+        case "logout":          
+              setIsAuth(false);
+              setIsWaiter(false);
+              setIsChief(false);
+              setIsClient(false);
+          break;
+          
+          case "waiter":          
+              setIsAuth(true)
+              setIsWaiter(true)
+              setIsChief(false)
+              setIsClient(false)
+          break;
+
+        case "chief":          
+              setIsAuth(true)
+              setIsChief(true)
+              setIsClient(false)
+              setIsWaiter(false)
+          break;
+
+        case "client":          
+              setIsAuth(true)
+              setIsClient(true)
+              setIsWaiter(false)
+              setIsChief(false)
+          break;
+      
+        default:
+          setIsAuth(false)
+          setIsWaiter(false)
+          setIsChief(false)
+          setIsClient(false)
+          break;
+      }
+  }
+
 
   return (
  
     <>
-    
-    <Nav table={default_table}/>
     {/* <Modal title="Payment successful" message="Hey!, Your payment has been successfully submitted. We’ve sent you an email with all of the details of your order." buttonText="Ok, got it!"  /> */}
     
-    <section class="flex flex-nowrap space-x-5 p-8 overflow-hidden   max-w-full min-h-screen h-auto">
-            <div class="bg-transparent  my-4 px-2 w-full md:w-3/5 overflow-hidden sm:my-px sm:px-px md:my-4 md:px-4">
-              
-              {/* <!-- Column Content --> */}
-              <MenuTabs className="min-w-full min-h-screen overflow-y-scroll overflow-x-hidden" />
-            
-            </div>
-
-
-            <div class="bg-red-700 bg-opacity-75  rounded-xl shadow-md my-4 px-2 w-full md:w-2/5  overflow-hidden sm:my-px sm:px-px md:my-4 md:px-4">
-              {/* <!-- Column Content --> */}
-              checkout
-            </div>
-    </section>
-
+    <Nav table={(isAuth && isClient) ? default_table : null} isAuth={isAuth} goTo={(r) => goTo(r)} />
+    
+        { !isAuth && <LoginView goTo={(r) => goTo(r)} /> }
+        { isClient && <ClientView  /> }
+        { isChief && <ChiefView  /> }
+        { isWaiter && <WaiterView  /> }
+    
     <Footer />
     
     </>

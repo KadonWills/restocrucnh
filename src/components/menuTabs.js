@@ -1,14 +1,13 @@
-import { useMemo, useState } from 'react'
+import {  useState } from 'react'
 import { Tab, Combobox } from '@headlessui/react'
 
 import { HiSelector } from 'react-icons/hi';
+import { GiMeal } from 'react-icons/gi';
+import {  MdRefresh } from 'react-icons/md';
 
 import food_menu_data from '../data/menu';
 import drink_menu_data from '../data/drinks';
 import MenuItem from './menuItem';
-import Modal from './modal';
-import { GiMeal } from 'react-icons/gi';
-import { MdClose, MdRefresh } from 'react-icons/md';
 
 const MenuTabs = () => {
     const classes = "bg-red-700 bg-opacity-75 rounded-xl shadow-md min-w-full min-h-full  my-4 px-2  md:w-3/5 overflow-hidden sm:my-px sm:px-px md:my-4 md:px-4";
@@ -116,7 +115,7 @@ const MenuTabs = () => {
                 </Tab.Panel>
                 <Tab.Panel className={classes}>
                     {
-                        drinkMenu.map((data, index) => <MenuItem key={"drink-item-" + index} item={data}   handleAddToCart={ () => addToCart(data)} />)
+                        drinkMenu.map((data, index) => <MenuItem key={"drink-item-" + data.id} item={data}   handleAddToCart={ () => addToCart(data)} />)
                     }
                 </Tab.Panel>
             </Tab.Panels>
