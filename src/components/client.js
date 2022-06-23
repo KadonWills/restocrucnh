@@ -106,7 +106,7 @@ const ClientView = () => {
                                         <th scope="col" className="py-3 px-6 text-sm font-bold tracking-wider text-left text-yellow-500 uppercase ">
                                             Price
                                         </th>
-                                        <th scope="col" className="p-4">
+                                        <th scope="col" className="p-4" hidden>
                                             <span className="sr-only">Remove</span>
                                         </th>
                                     </tr>
@@ -134,7 +134,7 @@ const ClientView = () => {
                                                 </td>
                                                 <td className="py-4 px-6 text-sm font-medium   ">{item.name}</td>
                                                 <td className="py-4 px-6 text-sm font-medium   ">{item.price}</td>
-                                                <td className="py-4 px-6 text-sm font-medium text-right ">
+                                                <td className="py-4 px-6 text-sm font-medium text-right " hidden>
                                                     <a href="/" className="text-red-600 dark:text-red-500 hover:underline">
                                                         <MdDelete className="text-lg" />
                                                     </a>
