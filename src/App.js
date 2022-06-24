@@ -17,7 +17,7 @@ function App() {
     const [isWaiter, setIsWaiter] = useState(false);
     const [isAuth, setIsAuth] = useState(false);
 
-    if(localStorage.getItem('items') == null)localStorage.setItem('items', []);
+    if(localStorage.getItem('items') == null)localStorage.setItem('items', JSON.stringify([]));
 
 
   let default_table = {
