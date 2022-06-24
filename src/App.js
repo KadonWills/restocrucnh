@@ -15,7 +15,10 @@ function App() {
     const [isClient, setIsClient] = useState(false);
     const [isChief, setIsChief] = useState(false);
     const [isWaiter, setIsWaiter] = useState(false);
-    const [isAuth, setIsAuth] = useState(false)
+    const [isAuth, setIsAuth] = useState(false);
+
+    if(localStorage.getItem('items') == null)localStorage.setItem('items', []);
+
 
   let default_table = {
     name: 'Table 1',

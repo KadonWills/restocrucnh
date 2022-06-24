@@ -4,7 +4,6 @@ import { GiHotMeal } from "react-icons/gi";
 
 const LoginView = (props) => {
 
-
     return (
         <>
 
