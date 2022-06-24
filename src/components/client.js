@@ -17,7 +17,7 @@ const ClientView = () => {
         
         //alert("counting " + orders.length + " items");
         let price = 0;
-        if (orders?.length > 0) {
+        if (orders && (orders?.length > 0)) {
             // price = (orders.length>1) ? orders.reduce((a, b) => a.price + b.price) : orders[0].price;
             orders.forEach((o, index) => {
                 price+=o.price
@@ -33,7 +33,7 @@ const ClientView = () => {
     useEffect(() => {
         //alert("init")
         const storedItems = JSON.parse(localStorage.getItem('items'));
-        if (storedItems.length > 0) {
+        if (storedItems && (storedItems?.length > 0)) {
             //setTotalPrice((storedItems.length>1) ? storedItems.reduce((a, b) => a.price + b.price) : storedItems[0].price);
             setTotalPrice(calculateTotalPrice(storedItems));
             console.log(storedItems);
