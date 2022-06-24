@@ -8,11 +8,11 @@ import MenuTabs from "./menuTabs";
 
 const ClientView = () => {
 
-    const [items, setItems] = useState(JSON.parse(localStorage.getItem('items')));
+    const [items, setItems] = useState(JSON.parse(localStorage.getItem('items')) ?? []);
 
-    const calculateTotalPrice = (data=null) => {
+    const calculateTotalPrice = (data=undefined) => {
 
-        const orders = data ?? JSON.parse(localStorage.getItem('items'));
+        const orders = data ?? JSON.parse(localStorage.getItem('items')) ?? items;
         
         //alert("counting " + orders.length + " items");
         let price = 0;
