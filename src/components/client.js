@@ -7,8 +7,9 @@ import MenuTabs from "./menuTabs";
 
 
 const ClientView = () => {
+    if(localStorage.getItem('items'))localStorage.setItem('items', []);
 
-    const [items, setItems] = useState(JSON.parse(localStorage.getItem('items')) ?? []);
+    const [items, setItems] = useState(JSON.parse(localStorage.getItem('items')));
 
     const calculateTotalPrice = (data=null) => {
 
