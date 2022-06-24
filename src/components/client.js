@@ -10,13 +10,13 @@ const ClientView = () => {
 
     const [items, setItems] = useState(JSON.parse(localStorage.getItem('items')) ?? []);
 
-    const calculateTotalPrice = (data=undefined) => {
+    const calculateTotalPrice = (data=null) => {
 
         const orders = data ?? JSON.parse(localStorage.getItem('items')) ?? items;
         
         //alert("counting " + orders.length + " items");
         let price = 0;
-        if (orders.length > 0) {
+        if (orders?.length > 0) {
             // price = (orders.length>1) ? orders.reduce((a, b) => a.price + b.price) : orders[0].price;
             orders.forEach((o, index) => {
                 price+=o.price
