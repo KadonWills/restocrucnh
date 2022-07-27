@@ -7,7 +7,7 @@ const LoginView = (props) => {
     return (
         <>
 
-        <Modal title="APIE Samson" message="Welcome to my defense, let's go forward with my app's demonstration." buttonText="Close" visible={true} />
+        <Modal title="Kadon Wills" message="Welcome to this sample Restaurant Order management UI made with ❤️ by me.." buttonText="Close" visible={true} />
         
         <section  className="flex flex-wrap flex-col justify-center place-items-center text-center  space-x-5 p-7    max-w-screen h-[78vh] text-white  ">
             <div className="w-full text-center">

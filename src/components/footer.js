@@ -13,7 +13,7 @@ const Footer = () => {
                 </a>
                 <p className="text-sm text-yellow-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2022 RestoCrunch —
                     <a href="https://twitter.com/kadonwills1" className="text-white ml-1" rel="noopener noreferrer" target="_blank">
-                        @kadonwills1
+                        By Kapol Brondon
                     </a>
                 </p>
                 <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
